@@ -1,0 +1,56 @@
+---
+cluster: "farm"
+form:
+  - modules
+  - extra_modules
+  - auto_accounts
+  - auto_queues
+  - cores
+  - mem
+  - gpu_num
+  - gpu_type
+  - bc_num_hours
+  - bc_email_on_started
+
+attributes:
+  modules: "apptainer conda"
+  extra_modules: 
+  auto_accounts:
+    help: |
+      Select the slurm group account (i.e adamgrp)
+  auto_queues:
+    help: |
+      Select a slurm partition. **We strongly recommend a high priority partition**
+  cores:
+    widget: "number_field"
+    label: "Number of cores"
+    value: 4
+    min: 1
+    max: 512
+    help: |
+      Enter the number of cores needed for your job
+  mem:
+    widget: "number_field"
+    label: "Amount of memory"
+    value: 8 
+    min: 4
+    help: |
+      Enter the amount of RAM in GB you need for your job
+  gpu_num:
+    widget: "number_field"
+    label: "Number of GPUs"
+    cacheable: false
+    # value: 0
+    min: 0
+    help: |
+      Enter the amount of GPUs needed for your job
+  gpu_type:
+    widget: "text_field"
+    label: "Type of GPU(s)"
+    cacheable: false
+    help: |
+      Enter a constraint on the GPU type (i.e. a5500).
+      **Advanced use only**, do not use unless you know what you're doing. (optional)
+  bc_num_hours:
+    help: |
+      Your job will be automatically killed after this amount of time

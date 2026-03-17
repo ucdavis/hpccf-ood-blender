@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+#
+# Blender
+#
+
+# Modules 
+module purge
+module load <%= context.modules %> <%= context.extra_modules %>
+
+# source blender init script depending on what i want
+. desktop.sh

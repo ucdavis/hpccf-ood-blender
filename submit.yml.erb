@@ -1,0 +1,32 @@
+---
+batch_connect:
+  template: vnc
+  websockify_cmd: "websockify"
+  extra_args: "-depth 24 -verbose +extension glx"
+  conn_params:
+    - csrf_token
+script:
+  native:
+    - "--export"
+    - "ALL"
+    - "--cpus-per-task"
+    - "<%= cores %>"
+    - "--mem"
+    - "<%= mem %>G"
+    <% if gpu_num.to_i > 0 %>
+    - "--gpus"
+    - "<%= gpu_num %>"
+    <% end %>
+  job_environment:
+    PATH: /bin:/sbin:/usr/bin:/usr/sbin:/snap/bin:/opt/puppetlabs/bin:/opt/TurboVNC/bin:/opt/VirtualGL/bin
+    HOME: <%= ENV['HOME'] %>
+    USER: <%= ENV['USER'] %>
+    APPTAINERENV_LD_LIBRARY_PATH: <%= ENV['LD_LIBRARY_PATH'] %>
+    APPTAINERENV_PATH: /bin:/sbin:/usr/bin:/usr/sbin
+    APPTAINER_BINDPATH: /cvmfs,<%= staged_root %>:/stage #,/etc,/media,/opt,/srv,/usr,/var
+    TVNC_VGL: 1
+    XDG_CONFIG_HOME: "<%= "#{staged_root}/.config" %>"
+    XDG_CACHE_HOME: "<%= "#{staged_root}/.cache" %>"
+    XDG_DATA_HOME: "<%= "#{staged_root}/.local/share" %>"
+    XDG_STATE_HOME: "<%= "#{staged_root}/.local/state" %>"
+    XDG_RUNTIME_DIR: "<%= "#{staged_root}/.run/user" %>"

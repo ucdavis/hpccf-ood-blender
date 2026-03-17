@@ -1,0 +1,11 @@
+# Export the module function if it exists
+[[ $(type -t module) == "function" ]] && export -f module
+
+<% if context.gpu_num.to_i > 0 %>
+  gpu_bus_id=$(nvidia-smi --query-gpu=gpu_bus_id --format=csv,noheader | head -1 | cut -c5- | tr 'A-Z' 'a-z')
+  card_no=$(ls -ld /sys/bus/pci/devices/${gpu_bus_id}/drm/card* | awk -F/ '{print $NF}')
+  export VGL_DISPLAY=/dev/dri/${card_no}
+  export VGLRUN="vglrun +v +wm -d $VGL_DISPLAY"
+<% else %>
+  export VGLRUN=""
+<% end %>
