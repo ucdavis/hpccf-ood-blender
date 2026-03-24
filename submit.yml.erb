@@ -18,7 +18,7 @@ script:
     - "<%= gpu_num %>"
     <% end %>
   job_environment:
-    PATH: /bin:/sbin:/usr/bin:/usr/sbin:/snap/bin:/opt/puppetlabs/bin:/opt/TurboVNC/bin:/opt/VirtualGL/bin
+    PATH: /bin:/sbin:/usr/bin:/usr/sbin:/snap/bin:/opt/puppetlabs/bin:/opt/TurboVNC/bin:/opt/VirtualGL/bin:/cvmfs/hpc.ucdavis.edu/sw/blender/5.0.1
     HOME: <%= ENV['HOME'] %>
     USER: <%= ENV['USER'] %>
     APPTAINERENV_LD_LIBRARY_PATH: <%= ENV['LD_LIBRARY_PATH'] %>

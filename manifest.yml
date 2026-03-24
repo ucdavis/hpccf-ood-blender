@@ -1,11 +1,10 @@
 ---
 name: Blender
 category: Interactive Apps
-subcategory: GUIs
+subcategory: Desktops
 role: batch_connect
 description: |
   This app will launch [Blender] for use in a classroom.
 
   [Blender]: https://github.com/blender/blender
   [Blender Wiki]: https://wiki.blender.org/wiki
-  [Blender Release Env]: https://wiki.blender.org/wiki/Building_Blender/Linux/CentOS7ReleaseEnvironment
