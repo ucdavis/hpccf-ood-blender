@@ -3,8 +3,6 @@ batch_connect:
   template: vnc
   websockify_cmd: "websockify"
   extra_args: "-depth 24 -verbose +extension glx"
-  conn_params:
-    - csrf_token
 script:
   native:
     - "--export"
@@ -21,9 +19,6 @@ script:
     PATH: /bin:/sbin:/usr/bin:/usr/sbin:/snap/bin:/opt/puppetlabs/bin:/opt/TurboVNC/bin:/opt/VirtualGL/bin:/cvmfs/hpc.ucdavis.edu/sw/blender/5.0.1
     HOME: <%= ENV['HOME'] %>
     USER: <%= ENV['USER'] %>
-    APPTAINERENV_LD_LIBRARY_PATH: <%= ENV['LD_LIBRARY_PATH'] %>
-    APPTAINERENV_PATH: /bin:/sbin:/usr/bin:/usr/sbin
-    APPTAINER_BINDPATH: /cvmfs,<%= staged_root %>:/stage #,/etc,/media,/opt,/srv,/usr,/var
     TVNC_VGL: 1
     XDG_CONFIG_HOME: "<%= "#{staged_root}/.config" %>"
     XDG_CACHE_HOME: "<%= "#{staged_root}/.cache" %>"
